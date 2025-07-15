@@ -12,11 +12,11 @@ export default function useMutation(method, resource, tagsToInvalidate) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const mutate = async (body) => {
+  const mutate = async (body, dynamicResource = resource) => {
     setLoading(true);
     setError(null);
     try {
-      const result = await request(resource, {
+      const result = await request(dynamicResource , {
         method,
         body: JSON.stringify(body),
       });
